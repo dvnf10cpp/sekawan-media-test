@@ -3,7 +3,7 @@
     <!-- Header Section -->
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-items-center tw-my-2">
-        <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold tw-text-white">List Pemesanan</h1>
+        <h1 class="tw-text-2xl lg:tw-text-3xl tw-font-semibold tw-text-white">List Reservasi</h1>
         <div>
           @if(auth()->user()->load('role')->role->role_name == "Approver")
           <a href="{{ route('reservations.pages.index', ['status' => 'Approved']) }}"
@@ -34,7 +34,6 @@
             <th class="tw-py-3 tw-px-4 tw-text-white">Nama Kendaraan</th>
             <th class="tw-py-3 tw-px-4 tw-text-white">Nama Pengemudi</th>
             <th class="tw-py-3 tw-px-4 tw-text-white">Tujuan</th>
-            <th class="tw-py-3 tw-px-4 tw-text-white">Biaya Bensin</th>
             <th class="tw-py-3 tw-px-4 tw-text-white">Tanggal Mulai</th>
             <th class="tw-py-3 tw-px-4 tw-text-white">Tanggal Selesai</th>
             <th class="tw-py-3 tw-px-4 tw-text-white tw-text-center">Status</th>
@@ -48,9 +47,12 @@
           <tr class="tw-border-b tw-border-gray-700 hover:tw-bg-gray-700">
             <td class="tw-py-3 tw-px-4 tw-text-center tw-text-gray-300">{{ $loop->iteration }}</td>
             <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $reservation->vehicle->vehicle_name }}</td>
-            <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $reservation->driver_name }}</td>
-            <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $reservation->destination }}</td>
-            <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $reservation->fuel_cost }}</td>
+            <td class="tw-py-3 tw-px-4 tw-text-gray-300">
+              <a href="">{{ $reservation->driver->fullname }}</a>
+            </td>
+            <td class="tw-py-3 tw-px-4 tw-text-gray-300">
+              <a href="">{{ $reservation->mine->mine_name }}</a>
+            </td>
             <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $reservation->start_date }}</td>
             <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $reservation->end_date }}</td>
             <td class="tw-py-3 tw-px-4 tw-text-center">

@@ -14,9 +14,8 @@ class Reservation extends Model
     protected $fillable = [
         'vehicle_id',
         'admin_id',
-        'driver_name',
-        'destination',
-        'fuel_cost',
+        'driver_id',
+        'mine_id',
         'start_date',
         'end_date',
         'created_at',
@@ -37,6 +36,16 @@ class Reservation extends Model
     public function approvals(): HasMany
     {
         return $this->hasMany(Approval::class, 'reservation_id', 'reservation_id');
+    }
+
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(Driver::class, 'driver_id', 'driver_id');
+    }
+
+    public function mine(): BelongsTo
+    {
+        return $this->belongsTo(Mine::class, 'mine_id', 'mine_id');
     }
 
     public function scopeFilter($query, array $filters)

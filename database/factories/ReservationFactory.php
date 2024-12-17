@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Driver;
+use App\Models\Mine;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Vehicle;
@@ -26,6 +28,8 @@ class ReservationFactory extends Factory
         })->get();
 
         $vehicles = Vehicle::all();
+        $drivers = Driver::all();
+        $mines = Mine::all();
 
         $start = fake()->date('Y-m-d', 'now');
         $end = fake()->dateTimeBetween($start, '+1 year')->format('Y-m-d');
@@ -35,9 +39,8 @@ class ReservationFactory extends Factory
         return [
             'vehicle_id' => $vehicles->random()->vehicle_id,
             'admin_id' => $users->random()->user_id,
-            'driver_name' => fake()->name(),
-            'destination' => fake()->city(),
-            'fuel_cost' => fake()->numberBetween(10000, 500000),
+            'driver_id' => $drivers->random()->driver_id,
+            'mine_id' =>$mines->random()->mine_id,
             'start_date' => $start,
             'end_date' => $end,
             'created_at' => $created,

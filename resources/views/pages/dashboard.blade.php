@@ -1,14 +1,11 @@
 <x-app-layout>
   <div class="tw-mx-5 tw-p-4 tw-bg-gray-900 tw-min-h-screen tw-text-white tw-rounded-lg">
-    <!-- Dashboard Title -->
     <div class="tw-mb-8 tw-text-center">
       <h1 class="tw-text-3xl tw-font-bold">Vehicle Usage Records</h1>
 
     </div>
 
-    <!-- Grid Layout -->
     <div class="tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-6">
-      <!-- Vehicle Usage By Month -->
       <div class="tw-p-6 tw-bg-gray-800 tw-rounded-lg tw-shadow-lg">
         <h2 class="tw-text-xl tw-font-semibold tw-mb-4">Pemakaian Kendaraan Selama 6 Bulan Terakhir</h2>
         <div class="tw-w-full lg:tw-h-[400px] tw-overflow-x-auto">
@@ -16,7 +13,6 @@
         </div>
       </div>
 
-      <!-- Top 10 Vehicle Usage -->
       <div class="tw-p-6 tw-bg-gray-800 tw-rounded-lg tw-shadow-lg">
         <h2 class="tw-text-xl tw-font-semibold tw-mb-4">Top 10 Kendaraan yang Sering Digunakan</h2>
         <div class="tw-w-full lg:tw-h-[400px] tw-overflow-x-auto">
@@ -24,7 +20,6 @@
         </div>
       </div>
 
-      <!-- Vehicle Usage by Type -->
       <div class="tw-p-6 tw-bg-gray-800 tw-rounded-lg tw-shadow-lg tw-col-span-1 lg:tw-col-span-2">
         <h2 class="tw-text-xl tw-font-semibold tw-mb-4">Penggunaan Berdasarkan Tipe Kendaraan</h2>
         <div class="tw-w-full lg:tw-h-[800px] tw-overflow-x-auto">

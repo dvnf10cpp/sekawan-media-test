@@ -3,7 +3,7 @@
     <!-- Page Header -->
     <div class="tw-mb-6">
       <div class="tw-flex tw-justify-between tw-items-center">
-        <h1 class="tw-text-3xl tw-font-bold tw-text-white">Buat Pemesanan</h1>
+        <h1 class="tw-text-3xl tw-font-bold tw-text-white">Buat Reservasi</h1>
       </div>
       <div class="tw-w-full tw-h-[1px] tw-bg-gray-700 tw-my-4"></div>
     </div>
@@ -15,23 +15,31 @@
       class="tw-bg-gray-800 tw-rounded-lg tw-p-6 tw-shadow-inner"
     >
       @csrf
-      <!-- Input: Nama Pengemudi -->
+
+
       <div class="tw-mb-4">
-        <label for="driver_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Nama Pengemudi <span class="tw-text-red-500">*</span></label>
-        <input
-          type="text"
+        <label for="driver_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Pengemudi <span class="tw-text-red-500">*</span></label>
+        <select
+          name="driver_name"
           id="driver_name"
-          name="Nama Pengemudi"
-          placeholder="Masukkan nama pengemudi"
-          value="{{ old('driver_name') }}"
           class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
           required
-        />
+        >
+          @if(old('driver_name'))
+          <option value="{{ old('driver_name') }}" class="tw-hidden">{{ old('driver_name') }}</option>
+          @else
+          <option value="" hidden class="tw-hidden">Pilih Pengemudi</option>
+          @endif
+          @foreach($drivers as $driver)
+          <option value="{{ $driver->fullname }}">{{ $driver->fullname }}</option>
+          @endforeach
+        </select>
       </div>
+
 
       <!-- Input: Tipe Kendaraan -->
       <div class="tw-mb-4">
-        <label for="vehicle_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Tipe Kendaraan <span class="tw-text-red-500">*</span></label>
+        <label for="vehicle_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Kendaraan <span class="tw-text-red-500">*</span></label>
         <select
           name="vehicle_name"
           id="vehicle_name"
@@ -41,7 +49,7 @@
           @if(old('vehicle_name'))
           <option value="{{ old('vehicle_name') }}" class="tw-hidden">{{ old('vehicle_name') }}</option>
           @else
-          <option value="" class="tw-hidden">Pilih Kendaraan</option>
+          <option value="" hidden class="tw-hidden">Pilih Kendaraan</option>
           @endif
           @foreach($vehicles as $vehicle)
           <option value="{{ $vehicle->vehicle_name }}">{{ $vehicle->vehicle_name }}</option>
@@ -49,32 +57,23 @@
         </select>
       </div>
 
-      <!-- Input: Tujuan -->
       <div class="tw-mb-4">
-        <label for="destination" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Tujuan <span class="tw-text-red-500">*</span></label>
-        <input
-          type="text"
-          id="destination"
-          name="Tujuan"
-          placeholder="Masukkan tujuan"
-          value="{{ old('destination') }}"
+        <label for="mine_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Tempat Tambang <span class="tw-text-red-500">*</span></label>
+        <select
+          name="mine_name"
+          id="mine_name"
           class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
           required
-        />
-      </div>
-
-      <!-- Input: Biaya Bensin -->
-      <div class="tw-mb-4">
-        <label for="fuel_cost" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Biaya Bensin <span class="tw-text-red-500">*</span></label>
-        <input
-          type="text"
-          id="fuel_cost"
-          name="Biaya Bensin"
-          placeholder="Masukkan biaya bensin"
-          value="{{ old('fuel_cost') }}"
-          class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
-          required
-        />
+        >
+          @if(old('mine_name'))
+          <option value="{{ old('mine_name') }}" class="tw-hidden">{{ old('mine_name') }}</option>
+          @else
+          <option value="" class="tw-hidden">Pilih Tempat Tambang</option>
+          @endif
+          @foreach($mines as $mine)
+          <option value="{{ $mine->mine_name }}">{{ $mine->mine_name }}</option>
+          @endforeach
+        </select>
       </div>
 
       <!-- Input: Tanggal Mulai dan Selesai -->
@@ -116,10 +115,9 @@
             <label class="tw-inline-flex tw-items-center tw-text-gray-200">
               <input
                 type="checkbox"
-                name="approvers"
+                name="approvers[]"
                 value="{{ $user->fullname }}"
                 class="tw-mr-2 tw-form-radio tw-text-secondary focus:tw-ring-secondary"
-                required
               />
               {{ $user->fullname }}
             </label>
@@ -138,6 +136,7 @@
         Buat Pemesanan
       </button>
     </div>
+    <x-alert/>
   </form>
 </div>
 </x-app-layout>

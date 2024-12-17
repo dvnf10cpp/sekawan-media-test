@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Approval;
+use App\Models\Driver;
+use App\Models\Mine;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Role;
@@ -40,6 +42,7 @@ class DatabaseSeeder extends Seeder
                 'role_id' => $adminRoleId,
                 'fullname' => 'Admin 1',
                 'email' => 'admin@gmail.com',
+                'position' => 'Admin Sistem',
                 'password' => Hash::make('pass123')
             ],
             [
@@ -47,9 +50,39 @@ class DatabaseSeeder extends Seeder
                 'role_id' => $approverRoleId,
                 'fullname' => 'Manager 1',
                 'email' => 'manager@gmail.com',
+                'position' => 'Manager',
                 'password' => Hash::make('pass123')
             ]
         ]);
+
+        Mine::insert([
+            [
+                'mine_name' => 'Batu Bara Jaya',
+                'mine_location' => 'Kalimantan Selatan',
+            ],
+            [
+                'mine_name' => 'Tambang Nikel Sejahtera',
+                'mine_location' => 'Sulawesi Tenggara',
+            ],
+            [
+                'mine_name' => 'Emas Makmur Sentosa',
+                'mine_location' => 'Papua Barat',
+            ],
+            [
+                'mine_name' => 'Granite Abadi',
+                'mine_location' => 'Riau',
+            ],
+            [
+                'mine_name' => 'Zinc Mineral Nusantara',
+                'mine_location' => 'Jawa Timur',
+            ],
+            [
+                'mine_name' => 'Kapur Lestari',
+                'mine_location' => 'Sumatera Barat',
+            ],
+        ]);
+
+        Driver::factory(30)->create();
 
         User::factory(25)->role('Approver')->create();
 

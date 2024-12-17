@@ -31,6 +31,14 @@ class UserFactory extends Factory
             'role_id' => '',
             'fullname' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'position' => fake()->randomElement([
+                'Kepala',
+                'Wakil',
+                'Manager',
+                'Supervisor',
+                'Staff',
+                'Assistant'
+            ]),
             'password' => Hash::make('password123'),
             'remember_token' => Str::random(10),
         ];

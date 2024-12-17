@@ -3,7 +3,7 @@
     <!-- Page Header -->
     <div class="tw-mb-6">
       <div class="tw-flex tw-justify-between tw-items-center">
-        <h1 class="tw-text-3xl tw-font-bold tw-text-white">Perbarui Data Pemesanan</h1>
+        <h1 class="tw-text-3xl tw-font-bold tw-text-white">Perbarui Data Reservasi</h1>
       </div>
       <div class="tw-w-full tw-h-[1px] tw-bg-gray-700 tw-my-4"></div>
     </div>
@@ -17,72 +17,58 @@
       @csrf
       @method("PUT")
 
-      <!-- Input: Nama Pengemudi -->
+
       <div class="tw-mb-4">
-        <label for="driver_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">
-          Nama Pengemudi <span class="tw-text-red-500">*</span>
-        </label>
-        <input
-          type="text"
+        <label for="driver_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Pengemudi <span class="tw-text-red-500">*</span></label>
+        <select
+          name="driver_name"
           id="driver_name"
-          name="Nama Pengemudi"
-          placeholder="Masukkan nama pengemudi"
-          value="{{ $reservation->driver_name }}"
           class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
           required
-        />
+        >
+        <option value="{{ $reservation->driver->fullname }}" selected>
+          {{ $reservation->driver->fullname }}
+        </option>
+          @foreach($drivers as $driver)
+          <option value="{{ $driver->fullname }}">{{ $driver->fullname }}</option>
+          @endforeach
+        </select>
       </div>
 
-      <!-- Dropdown: Tipe Kendaraan -->
+
+      <!-- Input: Tipe Kendaraan -->
       <div class="tw-mb-4">
-        <label for="vehicle_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">
-          Tipe Kendaraan <span class="tw-text-red-500">*</span>
-        </label>
+        <label for="vehicle_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Kendaraan <span class="tw-text-red-500">*</span></label>
         <select
           name="vehicle_name"
           id="vehicle_name"
           class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
           required
         >
-          <option value="{{ $reservation->vehicle->vehicle_name }}" selected>
-            {{ $reservation->vehicle->vehicle_name }}
-          </option>
+        <option value="{{ $reservation->vehicle->vehicle_name }}" selected>
+          {{ $reservation->vehicle->vehicle_name }}
+        </option>
           @foreach($vehicles as $vehicle)
-            <option value="{{ $vehicle->vehicle_name }}">{{ $vehicle->vehicle_name }}</option>
+          <option value="{{ $vehicle->vehicle_name }}">{{ $vehicle->vehicle_name }}</option>
           @endforeach
         </select>
       </div>
 
-      <!-- Input: Tujuan -->
       <div class="tw-mb-4">
-        <label for="destination" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">
-          Tujuan <span class="tw-text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          id="destination"
-          name="Tujuan"
-          placeholder="Masukkan tujuan"
-          value="{{ $reservation->destination }}"
+        <label for="mine_name" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">Tempat Tambang <span class="tw-text-red-500">*</span></label>
+        <select
+          name="mine_name"
+          id="mine_name"
           class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
           required
-        />
-      </div>
-
-      <!-- Input: Biaya Bensin -->
-      <div class="tw-mb-4">
-        <label for="fuel_cost" class="tw-block tw-mb-2 tw-text-gray-300 lg:tw-text-lg">
-          Biaya Bensin <span class="tw-text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          id="fuel_cost"
-          name="Biaya Bensin"
-          placeholder="Masukkan biaya bensin"
-          value="{{ $reservation->fuel_cost }}"
-          class="tw-w-full tw-p-2 tw-border tw-rounded-md tw-bg-gray-700 tw-text-white focus:tw-border-secondary"
-          required
-        />
+        >
+        <option value="{{ $reservation->mine->mine_name }}" selected>
+          {{ $reservation->mine->mine_name }}
+        </option>
+          @foreach($mines as $mine)
+          <option value="{{ $mine->mine_name }}">{{ $mine->mine_name }}</option>
+          @endforeach
+        </select>
       </div>
 
       <!-- Input: Tanggal Mulai dan Selesai -->

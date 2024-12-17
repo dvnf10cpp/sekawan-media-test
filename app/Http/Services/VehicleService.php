@@ -11,7 +11,8 @@ class VehicleService
     public function store(Request $request)
     {
         try {
-            Vehicle::insert($request->only('vehicle_name', 'vehicle_type', 'vehicle_owner'));
+            Vehicle::insert($request->only('vehicle_name', 'vehicle_type', 'vehicle_owner', 'number_plate'));
+
         } catch (\Exception $e) {
             error_log("VehicleService: " . $e->getMessage());
 
@@ -22,7 +23,7 @@ class VehicleService
     public function update(Request $request, Vehicle $vehicle)
     {
         try {
-            $vehicle->fill($request->only('vehicle_name', 'vehicle_type', 'vehicle_owner'))->save();
+            $vehicle->fill($request->only('vehicle_name', 'vehicle_type', 'vehicle_owner', 'number_plate'))->save();
         } catch(\Exception $e) {
             error_log("VehicleService: " . $e->getMessage());
 

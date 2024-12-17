@@ -95,7 +95,7 @@ class VehicleController extends Controller
     {
         return [
             'vehicle_name' => 'required|min:5|max:50',
-            'vehicle_type' => 'required|in:Person,Cargo',
+            'vehicle_type' => 'required|in:Passenger,Cargo',
             'vehicle_owner' => 'required|in:Company,Rental'
         ];
     }
@@ -107,7 +107,7 @@ class VehicleController extends Controller
             'vehicle_name.min' => 'Minimal panjang nama kendaraan adalah 5 karakter',
             'vehicle_name.max' => 'Maksimal panjang nama kendaraan adalah 50 karakter',
             'vehicle_type.required' => 'Tipe kendaraan wajib diisi',
-            'vehicle_type.in' => 'Tipe kendaraan harus merupakan Person atau Cargo',
+            'vehicle_type.in' => 'Tipe kendaraan harus merupakan Passenger atau Cargo',
             'vehicle_owner.required' => 'Pemilik kendaraan wajib diisi',
             'vehicle_owner.in' => 'Pemilik kendaraan harus merupakan Company atau Rental'
         ];

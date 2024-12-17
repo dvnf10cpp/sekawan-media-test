@@ -7,6 +7,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\DriverController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function() {
@@ -65,6 +66,15 @@ Route::middleware('auth')->group(function () {
         Route::get('', 'index')->name('reservations.pages.index');
         Route::get('/show/{reservation}', 'show')->name('reservations.pages.show');
         Route::get('/export/excel', 'exportExcel')->name('reservations.request.export.excel');
+    });
+
+    Route::controller(DriverController::class)->prefix('/drivers')->group(function() {
+        Route::get('/', 'index')->name('drivers.pages.index');
+        Route::get('/create', 'create')->name('drivers.pages.create');
+        Route::post('/', 'store')->name('drivers.store');
+        Route::get('/{driver}/edit', 'edit')->name('drivers.pages.edit');
+        Route::put('/{driver}', 'update')->name('drivers.update');
+        Route::delete('/{driver}', 'destroy')->name('drivers.destroy');
     });
 
     Route::controller(UserController::class)->prefix('/users')->group(function() {

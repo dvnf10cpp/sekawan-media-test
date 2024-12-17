@@ -15,16 +15,16 @@ return new class extends Migration
             $table->id('reservation_id')->primary();
             $table->unsignedBigInteger('vehicle_id');
             $table->uuid('admin_id');
-            $table->string('driver_name')->nullable(false);
-            $table->string('destination');
-            $table->integer('fuel_cost');
+            $table->unsignedBigInteger('mine_id');
+            $table->uuid('driver_id');
             $table->date('start_date');
             $table->date('end_date');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent();
+            $table->timestamps();
 
             $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
             $table->foreign('admin_id')->references('user_id')->on('users');
+            $table->foreign('mine_id')->references('mine_id')->on('mines');
+            $table->foreign('driver_id')->references('driver_id')->on('drivers');
         });
     }
 

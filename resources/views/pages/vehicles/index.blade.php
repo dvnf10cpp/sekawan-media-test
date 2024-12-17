@@ -21,6 +21,7 @@
           <tr class="tw-bg-blue-600">
             <th class="tw-py-3 tw-px-4 tw-text-white tw-text-center tw-font-semibold">No</th>
             <th class="tw-py-3 tw-px-4 tw-text-white tw-font-semibold">Nama Kendaraan</th>
+            <th class="tw-py-3 tw-px-4 tw-text-white tw-font-semibold">Nomor Plat</th>
             <th class="tw-py-3 tw-px-4 tw-text-white tw-font-semibold">Tipe Kendaraan</th>
             <th class="tw-py-3 tw-px-4 tw-text-white tw-font-semibold">Pemilik Kendaraan</th>
             <th class="tw-py-3 tw-px-4 tw-text-white tw-text-center tw-font-semibold">Aksi</th>
@@ -33,6 +34,7 @@
           <tr class="tw-border-b tw-border-gray-700 hover:tw-bg-gray-700">
             <td class="tw-py-3 tw-px-4 tw-text-center tw-text-gray-300">{{ $loop->iteration }}</td>
             <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $vehicle['vehicle_name'] }}</td>
+            <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $vehicle['number_plate'] }}</td>
             <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $vehicle['vehicle_type'] }}</td>
             <td class="tw-py-3 tw-px-4 tw-text-gray-300">{{ $vehicle['vehicle_owner'] }}</td>
             <td class="tw-py-3 tw-px-4 tw-flex tw-justify-center tw-gap-2">

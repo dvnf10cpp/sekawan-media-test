@@ -14,15 +14,15 @@
         <tbody>
           <tr>
             <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Nama Pengemudi</td>
-            <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->driver_name }}</td>
+            <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->driver->fullname }}</td>
           </tr>
           <tr>
             <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Nama Pengaju</td>
             <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->admin->fullname }}</td>
           </tr>
           <tr>
-            <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Tujuan</td>
-            <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->destination }}</td>
+            <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Tempat Tambang</td>
+            <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->mine->mine_name }}</td>
           </tr>
           <tr>
             <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Tanggal Mulai</td>

@@ -18,16 +18,21 @@ class VehicleFactory extends Factory
      */
     public function definition(): array
     {
-        $types = collect(['Person', 'Cargo']);
+        $types = collect(['Passenger', 'Cargo']);
         $owners = collect(['Company', 'Rental']);
 
         $faker = (new \Faker\Factory())::create();
         $faker->addProvider(new \Faker\Provider\FakeCar($faker));
 
+        $regionCodes = ['B', 'D', 'AB', 'Z', 'F', 'N', 'L', 'H'];
+        $number = $faker->numberBetween(1000, 9999);
+        $letters = strtoupper($faker->lexify('???')); 
+
         return [
             'vehicle_name' => $faker->vehicle,
             'vehicle_type' => $types->random(),
-            'vehicle_owner' => $owners->random()
+            'vehicle_owner' => $owners->random(),
+            'number_plate' => $faker->randomElement($regionCodes) . ' ' . $number . ' ' . $letters,
         ];
     }
 }

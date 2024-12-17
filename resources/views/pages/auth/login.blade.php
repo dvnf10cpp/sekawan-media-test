@@ -1,5 +1,5 @@
-
 <x-guest-layout>
+    {{-- <h1>Made By Devan</h1> --}}
     <div class="tw-bg-gray-900 tw-h-screen">
         <div class="tw-flex tw-justify-center tw-items-center tw-h-full">
             <!-- Card Container -->

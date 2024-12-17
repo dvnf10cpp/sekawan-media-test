@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use App\Http\Services\ReservationService;
+use App\Models\Driver;
+use App\Models\Mine;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ReservationController extends Controller
@@ -46,9 +48,11 @@ class ReservationController extends Controller
         $users = User::with('role')->whereHas('role', function($query) {
             $query->where('role_name', '=', 'Approver');
         })->get();
+        $drivers = Driver::all();
+        $mines = Mine::all();
 
 
-        return view('pages.reservations.create', compact('vehicles', 'users'));
+        return view('pages.reservations.create', compact('vehicles', 'users', 'drivers', 'mines'));
     }
 
     /**
@@ -90,7 +94,10 @@ class ReservationController extends Controller
      */
     public function edit(Reservation $reservation)
     {
-        $reservation->load('vehicle', 'approvals', 'approvals.approver');
+        $reservation->load('vehicle', 'approvals', 'approvals.approver', 'driver');
+
+        $drivers = Driver::all();
+        $mines = Mine::all();
 
         $vehicles = Vehicle::all();
 
@@ -98,7 +105,7 @@ class ReservationController extends Controller
             $query->where('role_name', '=', 'Approver');
         })->get();
 
-        return view('pages.reservations.edit', compact('reservation', 'vehicles', 'users'));
+        return view('pages.reservations.edit', compact('reservation', 'vehicles', 'users', 'drivers', 'mines'));
     }
 
     /**
@@ -128,21 +135,16 @@ class ReservationController extends Controller
     private function rules()
     {
         return [
-            'driver_name' => 'required|min:3',
-            'destination' => 'required|min:3',
+
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'fuel_cost' => 'required|numeric'
         ];
     }
 
     private function rulesMessage()
     {
         return [
-            'driver_name.required' => 'Nama Pengemudi wajib diisi',
-            'driver_name.min' => 'Nama Pengemudi wajib memiliki minimal 3 karakter',
-            'destination.required' => 'Tujuan wajib diisi',
-            'destination.min' => 'Tujuan wajib memiliki minimal 3 karakter',
+
             'start_date.required' => 'Tanggal mulai wajib diisi',
             'start_date.date' => 'Tanggal mulai wajib merupakan tanggal yang valid',
             'end_date.required' => 'Tanggal selesai wajib diisi',
