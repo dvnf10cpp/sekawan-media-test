@@ -3,8 +3,10 @@
     <li class="nav-item">
       <a class="navbar-brand tw-font-bold {{ Route::is('*dashboard*') ? "tw-text-green-500" : "tw-text-white" }}" href="/dashboard">PT Tambang Media</a>
     </li>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler tw-text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="tw-bg-white tw-block tw-w-6 tw-h-0.5 tw-mb-1 tw-mt-2"></span>
+      <span class="tw-bg-white tw-block tw-w-6 tw-h-0.5 tw-mb-1"></span>
+      <span class="tw-bg-white tw-block tw-w-6 tw-h-0.5 tw-mb-2"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">

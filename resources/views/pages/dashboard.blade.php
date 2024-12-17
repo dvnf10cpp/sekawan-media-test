@@ -11,7 +11,7 @@
       <!-- Vehicle Usage By Month -->
       <div class="tw-p-6 tw-bg-gray-800 tw-rounded-lg tw-shadow-lg">
         <h2 class="tw-text-xl tw-font-semibold tw-mb-4">Pemakaian Kendaraan Selama 6 Bulan Terakhir</h2>
-        <div>
+        <div class="tw-w-full lg:tw-h-[400px] tw-overflow-x-auto">
           <canvas id="vehicleUsageMonth"></canvas>
         </div>
       </div>
@@ -19,7 +19,7 @@
       <!-- Top 10 Vehicle Usage -->
       <div class="tw-p-6 tw-bg-gray-800 tw-rounded-lg tw-shadow-lg">
         <h2 class="tw-text-xl tw-font-semibold tw-mb-4">Top 10 Kendaraan yang Sering Digunakan</h2>
-        <div>
+        <div class="tw-w-full lg:tw-h-[400px] tw-overflow-x-auto">
           <canvas id="topKVehicleUsage"></canvas>
         </div>
       </div>
@@ -27,7 +27,7 @@
       <!-- Vehicle Usage by Type -->
       <div class="tw-p-6 tw-bg-gray-800 tw-rounded-lg tw-shadow-lg tw-col-span-1 lg:tw-col-span-2">
         <h2 class="tw-text-xl tw-font-semibold tw-mb-4">Penggunaan Berdasarkan Tipe Kendaraan</h2>
-        <div>
+        <div class="tw-w-full lg:tw-h-[800px] tw-overflow-x-auto">
           <canvas id="typeVehicleUsage"></canvas>
         </div>
       </div>
@@ -43,6 +43,8 @@
         backgroundColor: 'rgba(47, 54, 64, 0.8)',
         borderColor: 'rgba(255, 206, 86, 1)'
       };
+
+
 
       // Line Chart - Vehicle Usage by Month
       new Chart(usageMonthCtx, {
@@ -61,6 +63,7 @@
         },
         options: {
           responsive: true,
+          maintainAspectRation: false,
           plugins: {
             legend: {
               display: true,
@@ -89,6 +92,7 @@
         },
         options: {
           responsive: true,
+          maintainAspectRation: false,
           plugins: {
             legend: { display: false }
           },
@@ -114,6 +118,7 @@
         },
         options: {
           responsive: true,
+          maintainAspectRation: false,
           plugins: {
             legend: { display: false }
           },
