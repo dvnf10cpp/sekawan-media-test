@@ -12,7 +12,7 @@
         <script src="{{ asset('js/script.js') }}"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/custom.css'])
     </head>
-    <body class="tw-h-screen">
+    <body class="tw-h-screen tw-bg-gray-800">
       @include('components.navbar')
       <main class="tw-mt-10 tw-mb-20">
         {{ $slot }}
