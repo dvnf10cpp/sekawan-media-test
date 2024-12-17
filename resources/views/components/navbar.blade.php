@@ -35,7 +35,7 @@
             </li>
             <li>
               <a class="dropdown-item tw-text-gray-300 hover:tw-bg-gray-700 hover:tw-text-white"
-                 href="{{ route('vehicles.pages.index') }}">
+                 href="{{ route('services.pages.index') }}">
                 Perbaikan Kendaraan
               </a>
             </li>

@@ -9,6 +9,7 @@ use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Vehicle;
+use App\Models\VehicleService;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -89,6 +90,8 @@ class DatabaseSeeder extends Seeder
         Vehicle::factory(50)->create();
 
         Reservation::factory(200)->create();
+
+        VehicleService::factory(10)->create();
 
         Approval::factory(400)->create();
     }

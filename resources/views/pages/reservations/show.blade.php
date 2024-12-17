@@ -22,7 +22,7 @@
           </tr>
           <tr>
             <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Tempat Tambang</td>
-            <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->mine->mine_name }}</td>
+            <td class="tw-text-white lg:tw-text-lg">: {{ $reservation->mine->mine_name   }}</td>
           </tr>
           <tr>
             <td class="tw-text-gray-300 tw-font-semibold lg:tw-text-lg tw-w-1/3">Tanggal Mulai</td>

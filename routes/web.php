@@ -8,6 +8,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\VehicleServiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function() {
@@ -75,6 +76,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/{driver}/edit', 'edit')->name('drivers.pages.edit');
         Route::put('/{driver}', 'update')->name('drivers.update');
         Route::delete('/{driver}', 'destroy')->name('drivers.destroy');
+    });
+
+    Route::controller(VehicleServiceController::class)->prefix('/vehicle-service')->group(function() {
+        Route::get('', 'index')->name('services.pages.index');           //
+        Route::get('/create', 'create')->name('services.pages.create');  
+        Route::get('/edit/{service}', 'edit')->name('services.pages.edit');  
+        Route::get('/show/{service}', 'show')->name('services.pages.show');  
+        Route::post('', 'store')->name('services.request.store');        
+        Route::put('/{service}', 'update')->name('services.request.update'); 
+        Route::delete('/{service}', 'destroy')->name('services.request.destroy'); 
     });
 
     Route::controller(UserController::class)->prefix('/users')->group(function() {
