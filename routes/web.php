@@ -8,35 +8,34 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\VehicleFuelConsumptionController;
 use App\Http\Controllers\VehicleServiceController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('guest')->group(function() {
-    Route::controller(AuthController::class)->group(function() {
+Route::middleware('guest')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
         Route::post('/login', 'login')->name('auth.request.login');
     });
 
-    Route::controller(PageController::class)->group(function() {
+    Route::controller(PageController::class)->group(function () {
         Route::get('/login', 'login')->name('auth.pages.login');
     });
 });
 
-Route::controller(PageController::class)->group(function() {
+Route::controller(PageController::class)->group(function () {
     Route::fallback('notFound');
 });
 
-Route::middleware('auth:Approver')->group(function() {
-    Route::controller(ApprovalController::class)->prefix('/approvals')->group(function() {
+Route::middleware('auth:Approver')->group(function () {
+    Route::controller(ApprovalController::class)->prefix('/approvals')->group(function () {
         Route::put('/reservation/{reservation}', 'update')->name('approvals.request.update');
     });
 
-    Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
-
-    });
+    Route::controller(ReservationController::class)->prefix('/reservations')->group(function () {});
 });
 
-Route::middleware('auth:Admin')->group(function() {
-    Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
+Route::middleware('auth:Admin')->group(function () {
+    Route::controller(ReservationController::class)->prefix('/reservations')->group(function () {
 
         Route::get('/create', 'create')->name('reservations.pages.create');
         Route::get('/edit/{reservation}', 'edit')->name('reservations.pages.edit');
@@ -50,8 +49,8 @@ Route::middleware('auth:Admin')->group(function() {
 
 
 Route::middleware('auth')->group(function () {
-    Route::controller(PageController::class)->group(function() {
-        Route::get('/', function() {
+    Route::controller(PageController::class)->group(function () {
+        Route::get('/', function () {
             return redirect(route('dashboard'));
         });
         Route::get('/dashboard', 'dashboard')->name('dashboard');
@@ -59,17 +58,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/logs', 'log')->name('logs.pages.index');
     });
 
-    Route::controller(AuthController::class)->group(function() {
+    Route::controller(AuthController::class)->group(function () {
         Route::delete('/logout', 'logout')->name('auth.request.logout');
     });
 
-    Route::controller(ReservationController::class)->prefix('/reservations')->group(function() {
+    Route::controller(ReservationController::class)->prefix('/reservations')->group(function () {
         Route::get('', 'index')->name('reservations.pages.index');
         Route::get('/show/{reservation}', 'show')->name('reservations.pages.show');
         Route::get('/export/excel', 'exportExcel')->name('reservations.request.export.excel');
     });
 
-    Route::controller(DriverController::class)->prefix('/drivers')->group(function() {
+    Route::controller(DriverController::class)->prefix('/drivers')->group(function () {
         Route::get('/', 'index')->name('drivers.pages.index');
         Route::get('/create', 'create')->name('drivers.pages.create');
         Route::post('/', 'store')->name('drivers.store');
@@ -78,25 +77,35 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{driver}', 'destroy')->name('drivers.destroy');
     });
 
-    Route::controller(VehicleServiceController::class)->prefix('/vehicle-service')->group(function() {
+    Route::controller(VehicleServiceController::class)->prefix('/vehicle-service')->group(function () {
         Route::get('', 'index')->name('services.pages.index');           //
-        Route::get('/create', 'create')->name('services.pages.create');  
-        Route::get('/edit/{service}', 'edit')->name('services.pages.edit');  
-        Route::get('/show/{service}', 'show')->name('services.pages.show');  
-        Route::post('', 'store')->name('services.request.store');        
-        Route::put('/{service}', 'update')->name('services.request.update'); 
-        Route::delete('/{service}', 'destroy')->name('services.request.destroy'); 
+        Route::get('/create', 'create')->name('services.pages.create');
+        Route::get('/edit/{service}', 'edit')->name('services.pages.edit');
+        Route::get('/show/{service}', 'show')->name('services.pages.show');
+        Route::post('', 'store')->name('services.request.store');
+        Route::put('/{service}', 'update')->name('services.request.update');
+        Route::delete('/{service}', 'destroy')->name('services.request.destroy');
     });
 
-    Route::controller(UserController::class)->prefix('/users')->group(function() {
+
+    Route::controller(VehicleFuelConsumptionController::class)->prefix('fuel')->group(function () {
+        Route::get('', 'index')->name('fuel.pages.index');
+        Route::get('/create', 'create')->name('fuel.pages.create');
+        Route::post('', 'store')->name('fuel.request.store');
+        Route::get('/edit/{fuelConsumption}', 'edit')->name('fuel.pages.edit');
+        Route::put('/{fuelConsumption}', 'update')->name('fuel.request.update');
+        Route::delete('/{fuelConsumption}', 'destroy')->name('fuel.request.destroy');
+    });
+
+    Route::controller(UserController::class)->prefix('/users')->group(function () {
         Route::get('', 'index')->name('users.pages.index');
     });
 
-    Route::controller(LogController::class)->prefix('/logs')->group(function() {
+    Route::controller(LogController::class)->prefix('/logs')->group(function () {
         Route::get('', 'index')->name('logs.pages.index');
     });
 
-    Route::controller(VehicleController::class)->prefix('/vehicles')->group(function() {
+    Route::controller(VehicleController::class)->prefix('/vehicles')->group(function () {
         Route::get('', 'index')->name('vehicles.pages.index');
         Route::get('/create', 'create')->name('vehicles.pages.create');
         Route::get('/edit/{vehicle}', 'edit')->name('vehicles.pages.edit');
@@ -105,4 +114,3 @@ Route::middleware('auth')->group(function () {
         Route::put('/{vehicle}', 'update')->name('vehicles.request.update');
     });
 });
-

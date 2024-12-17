@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vehicle_fuel_consumptions', function (Blueprint $table) {
-            $table->id('service_id');
+            $table->id('fuel_id');
             $table->unsignedBigInteger('vehicle_id');
-            $table->date('service_date');
-            $table->text('service_description');
+            $table->enum('fuel_type', ['Diesel', 'Petrol', 'Gasoline']);
+            $table->float('fuel_liters');
+            $table->date('fuel_date');
             $table->timestamps();
 
             $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles');
