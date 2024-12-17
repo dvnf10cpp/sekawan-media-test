@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="tw-mx-5 tw-p-4 tw-bg-gray-900 tw-min-h-screen">
+  <div class="tw-rounded-lg tw-mx-5 tw-p-4 tw-bg-gray-900 tw-min-h-screen">
     <!-- Header Section -->
     <div class="tw-w-full tw-mb-5">
       <div class="tw-flex tw-justify-between tw-items-center tw-my-2">
@@ -50,7 +50,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="tw-mt-4 tw-flex tw-justify-end">
+    <div class="tw-mt-4 tw-flex tw-justify-center">
       {!! $vehicles->links() !!}
     </div>
   </div>

@@ -22,8 +22,10 @@ class AuthController extends Controller
         try {
             $this->authService->login($request);
 
+
             return redirect()->route('dashboard');
         } catch (\Exception $e) {
+            
             return redirect()->route('auth.pages.login')->withInput()->with('failed', $e->getMessage());
         }
     }

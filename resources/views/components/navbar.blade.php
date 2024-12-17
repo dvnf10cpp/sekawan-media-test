@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg tw-bg-gray-800 tw-text-white tw-px-2 lg:tw-px-10 tw-py-3">
   <div class="container-fluid">
-    <a class="navbar-brand tw-font-bold tw-text-white" href="{{ route('dashboard') }}">PT Tambang Media</a>
+    <li class="nav-item">
+      <a class="navbar-brand tw-font-bold {{ Route::is('*dashboard*') ? "tw-text-green-500" : "tw-text-white" }}" href="/dashboard">PT Tambang Media</a>
+    </li>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

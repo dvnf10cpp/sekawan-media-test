@@ -76,7 +76,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="tw-mt-4 tw-flex tw-justify-end tw-gap-x-10">
+    <div class="tw-mt-4 tw-flex tw-justify-center tw-gap-x-10">
       {!! $reservations->links() !!}
     </div>
   </div>

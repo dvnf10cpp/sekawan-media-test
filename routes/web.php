@@ -12,12 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->group(function() {
     Route::controller(AuthController::class)->group(function() {
         Route::post('/login', 'login')->name('auth.request.login');
-        Route::post('/register', 'register')->name('auth.request.register');
     });
 
     Route::controller(PageController::class)->group(function() {
         Route::get('/login', 'login')->name('auth.pages.login');
-        Route::get('/register', 'register')->name('auth.pages.register');
     });
 });
 
@@ -51,7 +49,10 @@ Route::middleware('auth:Admin')->group(function() {
 
 Route::middleware('auth')->group(function () {
     Route::controller(PageController::class)->group(function() {
-        Route::get('/', 'dashboard')->name('dashboard');
+        Route::get('/', function() {
+            return redirect(route('dashboard'));
+        });
+        Route::get('/dashboard', 'dashboard')->name('dashboard');
 
         Route::get('/logs', 'log')->name('logs.pages.index');
     });

@@ -1,5 +1,5 @@
 <x-app-layout>
-  <div class="tw-container tw-mx-auto tw-p-6 tw-bg-gray-900 tw-min-h-screen tw-rounded-lg tw-shadow-lg">
+  <div class="tw-mx-5 tw-p-6 tw-bg-gray-900 tw-min-h-screen tw-rounded-lg tw-shadow-lg">
     <!-- Page Header -->
     <div class="tw-mb-5 tw-flex tw-justify-between tw-items-center">
       <h1 class="tw-text-3xl tw-font-bold tw-text-white">Log Aplikasi</h1>
